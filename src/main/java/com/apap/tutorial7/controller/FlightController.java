@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/flight")
@@ -36,5 +37,11 @@ public class FlightController {
     public FlightModel viewFlight(@PathVariable("flightNumber") String flightNumber){
         FlightModel flight = flightService.findFlightByFlightNumber(flightNumber);
         return flight;
+    }
+
+    @GetMapping(value = "/all")
+    public List<FlightModel> viewAllFlight(){
+        List<FlightModel> allFlight = flightService.getAllFlights();
+        return allFlight;
     }
 }
