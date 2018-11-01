@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.util.List;
 
 public interface FlightService {
-    void addFlight(FlightModel flight);
+    FlightModel addFlight(FlightModel flight);
     FlightModel findFlightById(long id);
     void deleteFlight(FlightModel flight);
     void updateFlight(FlightModel flight, String flightNumber, String origin, String destination, Date time);
