@@ -1,9 +1,12 @@
 package com.apap.tutorial7.controller;
 
 import com.apap.tutorial7.model.FlightModel;
+import com.apap.tutorial7.rest.Setting;
 import com.apap.tutorial7.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.sql.Date;
 import java.util.List;
@@ -13,6 +16,14 @@ import java.util.List;
 public class FlightController {
     @Autowired
     private FlightService flightService;
+
+    @Autowired
+    RestTemplate restTemplate;
+
+    @Bean
+    public RestTemplate restExercise() {
+        return new RestTemplate();
+    }
 
     @PostMapping(value = "/add")
     public FlightModel addFlightSubmit(@RequestBody FlightModel flight) {
@@ -53,5 +64,11 @@ public class FlightController {
         }
         flightService.deleteFlight(flight);
         return "flight has been deleted";
+    }
+
+    @GetMapping(value = "/airports/{namaKota}")
+    public String getAirports(@PathVariable ("namaKota") String namaKota) throws Exception {
+        String path = Setting.exerciseUrl + "&term=" + namaKota + "&country=ID&all_airports=true";
+        return restTemplate.getForEntity(path, String.class).getBody();
     }
 }
