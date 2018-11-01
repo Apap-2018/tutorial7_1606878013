@@ -1,5 +1,7 @@
 package com.apap.tutorial7.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,6 +30,7 @@ public class PilotModel implements Serializable {
     private int flyHour;
 
     @OneToMany(mappedBy = "pilot", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private List<FlightModel> pilotFlight;
 
     public long getId() {
