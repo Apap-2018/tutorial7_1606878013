@@ -9,7 +9,7 @@ public interface FlightService {
     FlightModel addFlight(FlightModel flight);
     FlightModel findFlightById(long id);
     void deleteFlight(FlightModel flight);
-    void updateFlight(FlightModel flight, String flightNumber, String origin, String destination, Date time);
+    FlightModel updateFlight(FlightModel flight, String origin, String destination, Date time);
     List<FlightModel> getAllFlights();
-    List<FlightModel> findFlightByName(String flightNumber);
+    FlightModel findFlightByFlightNumber(String flightNumber);
 }

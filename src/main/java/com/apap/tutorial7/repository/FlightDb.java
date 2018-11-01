@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface FlightDb extends JpaRepository<FlightModel, Long> {
-    List<FlightModel> findFlightByFlightNumber (String flightNumber);
+    FlightModel findFlightByFlightNumber (String flightNumber);
 }

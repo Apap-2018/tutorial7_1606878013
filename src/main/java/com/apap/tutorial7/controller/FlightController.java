@@ -31,4 +31,10 @@ public class FlightController {
         flightService.updateFlight(flight, destination, origin, time);
         return "flight update success";
     }
+
+    @GetMapping(value = "/view/{flightNumber}")
+    public FlightModel viewFlight(@PathVariable("flightNumber") String flightNumber){
+        FlightModel flight = flightService.findFlightByFlightNumber(flightNumber);
+        return flight;
+    }
 }

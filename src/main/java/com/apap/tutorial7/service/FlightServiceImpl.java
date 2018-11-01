@@ -35,12 +35,12 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public void updateFlight(FlightModel flight, String flightNumber, String origin, String destination, Date time) {
-        flight.setFlightNumber(flightNumber);
+    public FlightModel updateFlight(FlightModel flight, String origin, String destination, Date time) {
         flight.setOrigin(origin);
         flight.setDestination(destination);
         flight.setTime(time);
         flightDb.save(flight);
+        return flight;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public List<FlightModel> findFlightByName(String flightNumber) {
+    public FlightModel findFlightByFlightNumber(String flightNumber) {
         return flightDb.findFlightByFlightNumber(flightNumber);
     }
 }
