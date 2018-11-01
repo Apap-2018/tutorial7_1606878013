@@ -44,4 +44,14 @@ public class FlightController {
         List<FlightModel> allFlight = flightService.getAllFlights();
         return allFlight;
     }
+
+    @DeleteMapping(value = "/delete/{flightId}")
+    public String deleteFlight(@PathVariable("flightId") long id){
+        FlightModel flight = flightService.findFlightById(id);
+        if (flight == null){
+            return "Couldn't find your flight";
+        }
+        flightService.deleteFlight(flight);
+        return "flight has been deleted";
+    }
 }
